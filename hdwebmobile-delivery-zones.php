@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: HDWebmobile Local Pickup & Delivery Zones
+ * Plugin Name: HDWebmobile Delivery Zones
  * Plugin URI: https://hdwebmobile.com/plugins/hdwebmobile-delivery-zones/
  * Description: Postcode-based delivery zone fees, resolved server-side from the shopper's own address -- never accepted from the request.
  * Version: 1.0.0

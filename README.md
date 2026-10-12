@@ -1,4 +1,4 @@
-# HDWebmobile Local Pickup & Delivery Zones
+# HDWebmobile Delivery Zones
 
 Postcode-based delivery zone fees, resolved server-side from the shopper's own address -- never accepted from the request.
 

@@ -64,7 +64,7 @@ final class HDLPZ_Core
         ?>
         <div class="notice notice-error is-dismissible">
             <p>
-                <?php esc_html_e('HDWebmobile Local Pickup & Delivery Zones requires WooCommerce to be installed and active. The plugin has been deactivated.', 'hdwebmobile-delivery-zones'); ?>
+                <?php esc_html_e('HDWebmobile Delivery Zones requires WooCommerce to be installed and active. The plugin has been deactivated.', 'hdwebmobile-delivery-zones'); ?>
             </p>
         </div>
         <?php

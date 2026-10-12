@@ -1,4 +1,4 @@
-=== HDWebmobile Local Pickup & Delivery Zones ===
+=== HDWebmobile Delivery Zones ===
 Contributors: htrxuan
 Donate link: https://paypal.me/htrxuan/20
 Tags: woocommerce, delivery zones, local pickup, shipping fee, postcode
@@ -14,10 +14,10 @@ Postcode-based delivery zone fees, resolved server-side from the shopper's own a
 
 == Description ==
 
-HDWebmobile Local Pickup & Delivery Zones lets you add a fee (or a free local-pickup note) for orders shipping to postcodes you choose. There is nothing for a shopper to select at checkout -- the matching zone, and its fee, are resolved automatically from their own shipping address.
+HDWebmobile Delivery Zones lets you add a fee (or a free local-pickup note) for orders shipping to postcodes you choose. There is nothing for a shopper to select at checkout -- the matching zone, and its fee, are resolved automatically from their own shipping address.
 
-= Why this plugin exists =
-Several competing delivery-zone and local-pickup plugins computed the matching zone and its fee in client-side JavaScript from a zone list already embedded in the page, then trusted a hidden checkout field carrying either the chosen zone id or the fee amount when the order was placed (CWE-602, Client-Side Enforcement of Server-Side Security). Editing that field let a shopper claim a zone their address didn't belong to, or submit a lower fee outright.
+= Security by design =
+A common weakness in delivery-zone and local-pickup tools is computing the matching zone and its fee in client-side JavaScript from a zone list embedded in the page, then trusting a hidden checkout field carrying either the chosen zone id or the fee amount when the order is placed (CWE-602, Client-Side Enforcement of Server-Side Security). Editing that field lets a shopper claim a zone their address doesn't belong to, or submit a lower fee outright.
 
 This plugin has no such field to tamper with in the first place:
 
