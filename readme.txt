@@ -33,6 +33,9 @@ This plugin has no such field to tamper with in the first place:
 * Postcode-based matching only -- no city/state or radius-based zones in this version
 * One fee per matched zone; the first matching zone wins if postcode patterns overlap
 
+= Enjoying this plugin? =
+If it helps your site, please consider [leaving an honest review on WordPress.org](https://wordpress.org/support/plugin/hdwebmobile-delivery-zones/reviews/#new-post) -- it helps other WordPress users find it. Found a problem or have an idea? Please [open a support topic](https://wordpress.org/support/plugin/hdwebmobile-delivery-zones/) first so it can be fixed.
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/hdwebmobile-delivery-zones` directory, or install the plugin through the WordPress plugins screen directly.
