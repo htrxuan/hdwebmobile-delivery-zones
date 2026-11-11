@@ -29,6 +29,11 @@ final class HDLPZ_Frontend
         add_action('woocommerce_cart_calculate_fees', array($this, 'apply_zone_fee'));
         add_action('woocommerce_review_order_before_payment', array($this, 'render_zone_note'));
 
+        // The block checkout never runs the classic hook above: it gets the note from the
+        // Store API cart response instead, so it also follows address changes without a reload.
+        add_action('woocommerce_blocks_loaded', array($this, 'register_store_api_data'));
+        add_action('wp_enqueue_scripts', array($this, 'enqueue_block_checkout_script'));
+
         // Stamped for the admin's own reference on the finished order (e.g. sorting orders by
         // pickup location) -- registered on both checkout flows, since woocommerce_checkout_
         // create_order alone never fires for the Store API's block checkout.
@@ -75,6 +80,54 @@ final class HDLPZ_Frontend
             return;
         }
         echo '<p class="hdlpz-zone-note">' . esc_html($zone['note']) . '</p>';
+    }
+
+    public function register_store_api_data()
+    {
+        if (!function_exists('woocommerce_store_api_register_endpoint_data')) {
+            return;
+        }
+
+        woocommerce_store_api_register_endpoint_data(array(
+            'endpoint'        => \Automattic\WooCommerce\StoreApi\Schemas\V1\CartSchema::IDENTIFIER,
+            'namespace'       => 'hdlpz',
+            'data_callback'   => array($this, 'get_store_api_data'),
+            'schema_callback' => array($this, 'get_store_api_schema'),
+            'schema_type'     => ARRAY_A,
+        ));
+    }
+
+    public function get_store_api_data()
+    {
+        $zone = $this->resolve_current_zone();
+        return array('note' => $zone ? $zone['note'] : '');
+    }
+
+    public function get_store_api_schema()
+    {
+        return array(
+            'note' => array(
+                'description' => __('Note for the delivery zone matching the shipping postcode', 'hdwebmobile-delivery-zones'),
+                'type'        => 'string',
+                'context'     => array('view', 'edit'),
+                'readonly'    => true,
+            ),
+        );
+    }
+
+    public function enqueue_block_checkout_script()
+    {
+        if (!is_checkout() || !wp_script_is('wc-blocks-checkout', 'registered')) {
+            return;
+        }
+
+        wp_enqueue_script(
+            'hdlpz-block-checkout',
+            HDLPZ_PLUGIN_URL . 'assets/js/hdlpz-block-checkout.js',
+            array('wc-blocks-checkout', 'wp-element', 'wp-plugins'),
+            HDLPZ_VERSION,
+            true
+        );
     }
 
     /**

@@ -3,7 +3,7 @@
 /**
  * Plugin Name: HDWebmobile Delivery Zones
  * Plugin URI: https://hdwebmobile.com/plugins/hdwebmobile-delivery-zones/
- * Description: Postcode-based delivery zone fees, resolved server-side from the shopper's own address -- never accepted from the request.
+ * Description: Add a delivery fee and a checkout note (such as pickup instructions) for the postcodes you choose, on classic and block checkout.
  * Version: 1.0.0
  * Author: htrxuan - Han Tran
  * Author URI: https://hdwebmobile.com/

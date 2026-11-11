@@ -10,17 +10,20 @@ Requires Plugins: woocommerce
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Postcode-based delivery zone fees, resolved server-side from the shopper's own address -- never accepted from the request.
+Add a delivery fee and a checkout note (such as pickup instructions) for the postcodes you choose, on classic and block checkout.
 
 == Description ==
 
 HDWebmobile Delivery Zones lets you add a fee (or a free local-pickup note) for orders shipping to postcodes you choose. There is nothing for a shopper to select at checkout -- the matching zone, and its fee, are resolved automatically from their own shipping address.
 
+= What makes it different =
+* **It works alongside your shipping methods, not instead of them.** Keep your WooCommerce shipping zones and rates as they are; a delivery zone adds its own fee line and note on top, for example a surcharge for outlying districts or pickup instructions for one neighbourhood.
+* **Wildcard postcodes.** One pattern like "7001*" covers every postcode with that prefix, so a whole district is one line, not a long list.
+* **A note at checkout, not just a fee.** Each zone can show its own message in the order summary, and it updates as the shopper edits their address -- including on the block-based checkout.
+* **Nothing to choose, nothing to tamper with.** The zone is matched from the shipping postcode on the server, so there is no field at checkout for a shopper to pick a cheaper zone.
+* **Free, with every feature included.** There is no paid tier or upgrade.
+
 = Security by design =
-A common weakness in delivery-zone and local-pickup tools is computing the matching zone and its fee in client-side JavaScript from a zone list embedded in the page, then trusting a hidden checkout field carrying either the chosen zone id or the fee amount when the order is placed (CWE-602, Client-Side Enforcement of Server-Side Security). Editing that field lets a shopper claim a zone their address doesn't belong to, or submit a lower fee outright.
-
-This plugin has no such field to tamper with in the first place:
-
 * There is no zone-selection field on the checkout form at all. The applicable zone is always looked up from the shipping postcode WooCommerce's own customer object is currently tracking -- never a value read from the request.
 * The fee actually charged is always re-read fresh from the matched zone's own saved configuration by its id, right before it's applied -- never a number supplied by anything else.
 
@@ -58,4 +61,4 @@ When a shopper's shipping postcode matches, the fee and note appear at checkout 
 == Changelog ==
 
 = 1.0.0 =
-* Initial release: postcode-based delivery zone fees, resolved entirely server-side from the shopper's own shipping address.
+* Initial release: postcode-based delivery zone fees and checkout notes, resolved entirely server-side from the shopper's own shipping address, on classic and block checkout.
