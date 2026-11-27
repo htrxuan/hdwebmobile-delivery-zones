@@ -12,7 +12,7 @@ Adds a fee (or a free local-pickup note) for orders shipping to postcodes you ch
 
 ## Why this plugin exists
 
-Several competing delivery-zone and local-pickup plugins computed the matching zone and its fee in client-side JavaScript from a zone list already embedded in the page, then trusted a hidden checkout field carrying either the chosen zone id or the fee amount when the order was placed (CWE-602, Client-Side Enforcement of Server-Side Security). Editing that field let a shopper claim a zone their address didn't belong to, or submit a lower fee outright.
+A common flaw in delivery-zone and local-pickup plugins: computing the matching zone and its fee in client-side JavaScript, then trusting a hidden checkout field carrying either the chosen zone id or the fee amount when the order is placed (CWE-602, Client-Side Enforcement of Server-Side Security). Editing that field lets a shopper claim a zone their address doesn't belong to, or submit a lower fee outright.
 
 This plugin has no such field to tamper with in the first place:
 

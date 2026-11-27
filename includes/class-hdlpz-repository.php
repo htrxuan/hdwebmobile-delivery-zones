@@ -10,12 +10,11 @@ if (!defined('ABSPATH')) {
  * The admin-configured zone list, postcode matching, and the ONLY place a zone fee is ever
  * resolved.
  *
- * Several competing delivery-zone / local-pickup plugins computed the matching zone and its
- * fee in client-side JavaScript from a zone list already embedded in the page, then trusted a
- * hidden checkout field carrying either the chosen zone id or the fee amount itself when the
- * order was placed. Editing that field let a shopper claim a zone their address doesn't
- * actually belong to, or submit a lower fee outright (CWE-602, Client-Side Enforcement of
- * Server-Side Security).
+ * The risk this guards against: computing the matching zone and its fee in client-side
+ * JavaScript, then trusting a hidden checkout field carrying the chosen zone id or the fee
+ * amount itself when the order is placed. Editing that field would let a shopper claim a zone
+ * their address doesn't belong to, or submit a lower fee outright (CWE-602, Client-Side
+ * Enforcement of Server-Side Security).
  *
  * This plugin has no such field to tamper with in the first place: there is no zone id, and no
  * fee, submitted by the shopper anywhere. find_zone_for_postcode() is the ONLY way a zone is
